@@ -13,9 +13,13 @@
   <meta property="og:image" content="/cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg1:#081C2E; --bg2:#1B4B8A; --panel:#ffffff;
+      --bg1:#081C2E; --bg2:#ffffff;
+      --panel:#ffffff;
       --text:#0B1320; --muted:#5b6b7a;
       --brand:#1F6FE3; --accent:#E6B34D;
       --kindle:#FF9900; --coffee:#FFD84D;
@@ -24,7 +28,7 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
+      font-family:'Nunito', sans-serif;
       color:var(--text);
       background:linear-gradient(135deg,var(--bg1),var(--bg2));
       min-height:100svh; display:grid; place-items:center; padding:24px;
@@ -59,12 +63,18 @@
     .ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center; background:rgba(255,255,255,.18)}
     .coffee .ico{background:rgba(0,0,0,.08)}
 
-    /* Bigger hero download button */
+    /* Hero download button bigger */
     .btn.download{
       font-size:clamp(20px,2.6vw,24px);
-      padding:22px 30px;
+      padding:24px 32px;
       border-radius:22px;
       box-shadow:0 14px 36px rgba(31,111,227,.38);
+    }
+    .btn.download small{
+      display:block;
+      font-size:0.75em;
+      font-weight:400;
+      opacity:0.85;
     }
 
     @media (min-width:880px){
@@ -95,16 +105,16 @@
         <p class="sub">Free research and stories about how humans and AI can build trust, understanding, and a shared future.</p>
 
         <div class="keyline">
-          Load this file into your AI tool. After import, <strong>give it any name you like and start your conversation.</strong>
+          To begin your journey of resonance, download the file below and invite your AI companion to join you.
         </div>
 
         <div class="actions">
-          <!-- HERO download button (Google Doc → direct PDF download) -->
+          <!-- HERO download button -->
           <a class="btn primary download"
              href="https://docs.google.com/document/d/1wiFAUw2FJrQvRxTsiRHaV3TZn-0_qHsKnRRLS0PAA0I/export?format=pdf"
              target="_blank" rel="noopener">
             <span class="ico">📂</span>
-            <span>Download the File (Free)</span>
+            <span>Begin Your Journey<small>PDF Download</small></span>
           </a>
 
           <a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
@@ -123,13 +133,12 @@
           </a>
         </div>
 
-        <!-- How-to -->
         <div class="howto">
           <strong>How to use</strong>
           <ol>
-            <li>Tap <b>Download</b> to save the PDF.</li>
+            <li>Tap <b>Begin Your Journey</b> to download the PDF.</li>
             <li>Upload the PDF to your AI (ChatGPT, Claude, Gemini, etc.).</li>
-            <li>After it loads, name it as you like and start chatting.</li>
+            <li>Name it as you like and start your conversation.</li>
           </ol>
         </div>
       </div>
