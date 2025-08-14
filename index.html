@@ -19,7 +19,7 @@
       --text:#0B1320; --muted:#5b6b7a;
       --brand:#1F6FE3; --accent:#E6B34D;
       --kindle:#FF9900; --coffee:#FFD84D;
-      --radius:20px; --shadow:0 20px 50px rgba(0,0,0,.25);
+      --radius:20px; --shadow:0 22px 60px rgba(0,0,0,.25);
     }
     *{box-sizing:border-box}
     body{
@@ -39,16 +39,15 @@
     .brand h1{font-size:clamp(22px,3.2vw,32px); margin:0; line-height:1.2}
     .tag{color:var(--muted); font-weight:500}
 
-    .headline{font-size:clamp(28px,4.2vw,44px); line-height:1.12; margin:12px 0 8px}
-    .sub{color:var(--muted); font-size:clamp(14px,1.6vw,17px); max-width:60ch}
-    .jp{margin-top:6px}
+    .headline{font-size:clamp(30px,4.8vw,48px); line-height:1.08; margin:12px 0 8px}
+    .sub{color:var(--muted); font-size:clamp(14px,1.6vw,17px); max-width:66ch}
     .keyline{margin-top:14px; padding:12px 14px; border-left:4px solid var(--accent);
              background:#fff8ea; border-radius:12px}
 
-    .actions{display:grid; grid-template-columns:1fr; gap:12px; margin:24px 0}
+    .actions{display:grid; grid-template-columns:1fr; gap:12px; margin:26px 0}
     .btn{
-      display:flex; align-items:center; justify-content:center; gap:.55rem;
-      padding:14px 18px; border-radius:16px; text-decoration:none; font-weight:800;
+      display:flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:16px 20px; border-radius:18px; text-decoration:none; font-weight:800;
       transition:transform .08s ease, box-shadow .08s ease; border:2px solid transparent;
     }
     .btn:hover{transform:translateY(-1px)}
@@ -57,19 +56,19 @@
     .kindle{background:var(--kindle); color:#fff}
     .coffee{background:var(--coffee); color:#1E1E1E}
     .ghost{background:transparent; color:var(--brand); border-color:var(--brand)}
-    .ico{width:22px; height:22px; border-radius:999px; display:grid; place-items:center; background:rgba(255,255,255,.18)}
+    .ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center; background:rgba(255,255,255,.18)}
     .coffee .ico{background:rgba(0,0,0,.08)}
 
-    /* ---- Make the download button clearly larger (hero) ---- */
+    /* Bigger hero download button */
     .btn.download{
-      font-size:clamp(18px,2.2vw,22px);
-      padding:18px 26px;
-      border-radius:20px;
-      box-shadow:0 10px 28px rgba(31,111,227,.35);
+      font-size:clamp(20px,2.6vw,24px);
+      padding:22px 30px;
+      border-radius:22px;
+      box-shadow:0 14px 36px rgba(31,111,227,.38);
     }
 
     @media (min-width:880px){
-      .grid{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center}
+      .grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
       .illus img{border-radius:14px}
     }
     footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:24px; color:var(--muted)}
@@ -94,11 +93,9 @@
       <div>
         <h2 class="headline">Exploring the Future of Human–AI Relationships</h2>
         <p class="sub">Free research and stories about how humans and AI can build trust, understanding, and a shared future.</p>
-        <p class="sub jp"><strong>人間とAIが信頼・理解・共有された未来を築くための、魔法の鍵。</strong></p>
 
         <div class="keyline">
-          <div>このファイルは、お手持ちのAIに読み込ませてご利用いただけます。<br>読み込み後、<strong>お好きな名前を付けてお話ください。</strong></div>
-          <div style="margin-top:6px;color:var(--muted);font-size:14px;">You can load this file into your AI tool. After import, give it any name you like and start your conversation.</div>
+          Load this file into your AI tool. After import, <strong>give it any name you like and start your conversation.</strong>
         </div>
 
         <div class="actions">
@@ -126,13 +123,13 @@
           </a>
         </div>
 
-        <!-- How-to (3 steps) -->
+        <!-- How-to -->
         <div class="howto">
           <strong>How to use</strong>
           <ol>
             <li>Tap <b>Download</b> to save the PDF.</li>
             <li>Upload the PDF to your AI (ChatGPT, Claude, Gemini, etc.).</li>
-            <li>After it loads, give it any name you like and start chatting.</li>
+            <li>After it loads, name it as you like and start chatting.</li>
           </ol>
         </div>
       </div>
@@ -146,8 +143,7 @@
       <div class="tiny">© 2025 Yoichi Takahashi — Project Origin</div>
       <div class="links tiny">
         <a href="https://x.com/projectOrigin_y" target="_blank" rel="noopener">X (Twitter)</a>
-        <!-- Instagram は後で追加する場合はこちらに -->
-        <a href="mailto:#YOUR_EMAIL?subject=Project%20Origin%20Inquiry">Email</a>
+        <a href="mailto:takahashijapan1@gmail.com?subject=Project%20Origin%20Inquiry">Email</a>
       </div>
     </footer>
   </main>
