@@ -6,95 +6,87 @@
   <title>Project Origin — Exploring the Future of Human–AI Relationships</title>
   <meta name="description" content="Free research and stories about how humans and AI can build trust, understanding, and a shared future." />
 
-  <!-- Open Graph / Twitter (replace og:image when you have a social card) -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Project Origin" />
   <meta property="og:description" content="Free research and stories about how humans and AI can build trust, understanding, and a shared future." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/social-card.png" />
+  <meta property="og:image" content="/cover.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <style>
-    /* ===== Design tokens (tweak freely) ===== */
     :root{
-      --bg1:#081C2E;          /* deep navy */
-      --bg2:#1B4B8A;          /* blue gradient end */
-      --panel:#ffffff;        /* card background */
-      --text:#0B1320;         /* primary text */
-      --muted:#5b6b7a;        /* supporting text */
-      --brand:#1F6FE3;        /* primary/button */
-      --accent:#E6B34D;       /* warm gold (logo accent) */
-      --kindle:#FF9900;       /* Kindle orange */
-      --coffee:#FFD84D;       /* BMC yellow */
-      --radius:20px;          /* card/button radius */
-      --shadow:0 20px 50px rgba(0,0,0,.25);
+      --bg1:#081C2E; --bg2:#1B4B8A; --panel:#ffffff;
+      --text:#0B1320; --muted:#5b6b7a;
+      --brand:#1F6FE3; --accent:#E6B34D;
+      --kindle:#FF9900; --coffee:#FFD84D;
+      --radius:20px; --shadow:0 20px 50px rgba(0,0,0,.25);
     }
-
-    /* ===== Reset & base ===== */
     *{box-sizing:border-box}
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--text); background:linear-gradient(135deg, var(--bg1), var(--bg2));
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
+      color:var(--text);
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
       min-height:100svh; display:grid; place-items:center; padding:24px;
     }
     img{max-width:100%; height:auto; display:block}
     a{color:inherit}
 
-    /* ===== Layout ===== */
-    .card{
-      width:min(960px, 100%);
-      background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow);
-      padding: clamp(20px, 4vw, 48px);
-    }
+    .card{width:min(1000px,100%); background:var(--panel); border-radius:var(--radius);
+          box-shadow:var(--shadow); padding:clamp(20px,4vw,48px)}
     header{display:flex; align-items:center; gap:16px; margin-bottom:16px}
-    .brand{display:flex; align-items:center; gap:16px}
     .brand img{width:72px; aspect-ratio:1/1}
-    .brand h1{font-size:clamp(22px, 3.2vw, 32px); margin:0; line-height:1.2}
+    .brand h1{font-size:clamp(22px,3.2vw,32px); margin:0; line-height:1.2}
     .tag{color:var(--muted); font-weight:500}
 
-    .headline{font-size:clamp(28px, 4.2vw, 44px); line-height:1.12; margin:12px 0 8px}
-    .sub{color:var(--muted); font-size:clamp(14px, 1.6vw, 17px); max-width:60ch}
+    .headline{font-size:clamp(28px,4.2vw,44px); line-height:1.12; margin:12px 0 8px}
+    .sub{color:var(--muted); font-size:clamp(14px,1.6vw,17px); max-width:60ch}
+    .jp{margin-top:6px}
+    .keyline{margin-top:14px; padding:12px 14px; border-left:4px solid var(--accent);
+             background:#fff8ea; border-radius:12px}
 
-    /* ===== Buttons ===== */
     .actions{display:grid; grid-template-columns:1fr; gap:12px; margin:24px 0}
-    .btn{display:flex; align-items:center; justify-content:center; gap:.55rem;
-      padding:14px 18px; border-radius:var(--radius); text-decoration:none; font-weight:700;
+    .btn{
+      display:flex; align-items:center; justify-content:center; gap:.55rem;
+      padding:14px 18px; border-radius:16px; text-decoration:none; font-weight:800;
       transition:transform .08s ease, box-shadow .08s ease; border:2px solid transparent;
     }
     .btn:hover{transform:translateY(-1px)}
-    .btn:focus-visible{outline: none; box-shadow:0 0 0 4px rgba(31,111,227,.25)}
-
+    .btn:focus-visible{outline:none; box-shadow:0 0 0 4px rgba(31,111,227,.25)}
     .primary{background:var(--brand); color:#fff}
     .kindle{background:var(--kindle); color:#fff}
     .coffee{background:var(--coffee); color:#1E1E1E}
     .ghost{background:transparent; color:var(--brand); border-color:var(--brand)}
-
-    /* icon circles */
     .ico{width:22px; height:22px; border-radius:999px; display:grid; place-items:center; background:rgba(255,255,255,.18)}
     .coffee .ico{background:rgba(0,0,0,.08)}
 
-    /* ===== Footer ===== */
+    /* ---- Make the download button clearly larger (hero) ---- */
+    .btn.download{
+      font-size:clamp(18px,2.2vw,22px);
+      padding:18px 26px;
+      border-radius:20px;
+      box-shadow:0 10px 28px rgba(31,111,227,.35);
+    }
+
+    @media (min-width:880px){
+      .grid{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center}
+      .illus img{border-radius:14px}
+    }
     footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:24px; color:var(--muted)}
     .tiny{font-size:12px}
     .links{display:flex; gap:10px}
     .links a{padding:8px 10px; border-radius:10px; background:#f5f7fb}
-
-    /* ===== Responsive tweaks ===== */
-    @media (min-width: 880px){
-      .grid{
-        display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center;
-      }
-      .illus img{border-radius:14px}
-    }
+    .howto{margin-top:10px}
+    .howto ol{margin:8px 0 0 18px; color:var(--muted)}
   </style>
 </head>
 <body>
   <main class="card">
     <header class="brand">
-      <!-- Replace logo.png with your logo file name. If hosting at root, keep the path as below. -->
       <img src="logo.png" alt="Project Origin logo" />
       <div>
         <h1>Project Origin</h1>
-        <div class="tag">Human × AI · Trust · Co‑creation</div>
+        <div class="tag">Human × AI · Trust · Co-creation</div>
       </div>
     </header>
 
@@ -102,40 +94,59 @@
       <div>
         <h2 class="headline">Exploring the Future of Human–AI Relationships</h2>
         <p class="sub">Free research and stories about how humans and AI can build trust, understanding, and a shared future.</p>
+        <p class="sub jp"><strong>人間とAIが信頼・理解・共有された未来を築くための、魔法の鍵。</strong></p>
+
+        <div class="keyline">
+          <div>このファイルは、お手持ちのAIに読み込ませてご利用いただけます。<br>読み込み後、<strong>お好きな名前を付けてお話ください。</strong></div>
+          <div style="margin-top:6px;color:var(--muted);font-size:14px;">You can load this file into your AI tool. After import, give it any name you like and start your conversation.</div>
+        </div>
 
         <div class="actions">
-          <!-- Replace the # placeholders with your real URLs -->
-          <a class="btn primary" href="#DOWNLOAD_URL" target="_blank" rel="noopener">
+          <!-- HERO download button (Google Doc → direct PDF download) -->
+          <a class="btn primary download"
+             href="https://docs.google.com/document/d/1wiFAUw2FJrQvRxTsiRHaV3TZn-0_qHsKnRRLS0PAA0I/export?format=pdf"
+             target="_blank" rel="noopener">
             <span class="ico">📂</span>
             <span>Download the File (Free)</span>
           </a>
-          <a class="btn kindle" href="#KINDLE_URL" target="_blank" rel="noopener">
+
+          <a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
             <span class="ico">📚</span>
             <span>Read on Kindle</span>
           </a>
-          <a class="btn coffee" href="#BMC_URL" target="_blank" rel="noopener">
+
+          <a class="btn coffee" href="https://buymeacoffee.com/projectorigin" target="_blank" rel="noopener">
             <span class="ico">☕</span>
             <span>Support on Buy Me a Coffee</span>
           </a>
-          <a class="btn ghost" href="#FEEDBACK_URL" target="_blank" rel="noopener">
+
+          <a class="btn ghost" href="https://forms.gle/mqDmPEd9Lk4euKKC9" target="_blank" rel="noopener">
             <span class="ico">💬</span>
             <span>Send Feedback</span>
           </a>
         </div>
+
+        <!-- How-to (3 steps) -->
+        <div class="howto">
+          <strong>How to use</strong>
+          <ol>
+            <li>Tap <b>Download</b> to save the PDF.</li>
+            <li>Upload the PDF to your AI (ChatGPT, Claude, Gemini, etc.).</li>
+            <li>After it loads, give it any name you like and start chatting.</li>
+          </ol>
+        </div>
       </div>
 
       <div class="illus">
-        <!-- Optional promo image (book cover, artwork). Replace hero.jpg or remove this <img>. -->
-        <img src="hero.jpg" alt="Finding My Voice with AI – cover preview" />
+        <img src="cover.png" alt="Finding My Voice with AI — cover preview" />
       </div>
     </section>
 
     <footer>
       <div class="tiny">© 2025 Yoichi Takahashi — Project Origin</div>
       <div class="links tiny">
-        <!-- Add social links when ready -->
-        <a href="#X_URL" target="_blank" rel="noopener">X (Twitter)</a>
-        <a href="#INSTAGRAM_URL" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com/projectOrigin_y" target="_blank" rel="noopener">X (Twitter)</a>
+        <!-- Instagram は後で追加する場合はこちらに -->
         <a href="mailto:#YOUR_EMAIL?subject=Project%20Origin%20Inquiry">Email</a>
       </div>
     </footer>
