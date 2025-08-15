@@ -87,7 +87,6 @@
     .links a{padding:8px 10px; border-radius:10px; background:#f5f7fb}
     .howto{margin-top:10px}
     .howto ol{margin:8px 0 0 18px; color:var(--muted)}
-    .alt{font-size:12px; color:var(--muted); text-align:center}
   </style>
 </head>
 <body>
@@ -110,30 +109,12 @@
         </div>
 
         <div class="actions">
-          <!-- ① 自サイト配下のPDFに変更（同じドメインに /files/kyomei.pdf を設置） -->
+          <!-- HERO download button -->
           <a class="btn primary download"
-             href="/files/kyomei.pdf"
-             download="KyomeiFile.pdf">
+             href="https://docs.google.com/document/d/1wiFAUw2FJrQvRxTsiRHaV3TZn-0_qHsKnRRLS0PAA0I/export?format=pdf"
+             target="_blank" rel="noopener">
             <span class="ico">📂</span>
             <span>Begin Your Journey<small>PDF Download</small></span>
-          </a>
-
-          <!-- ② JSで強制ダウンロード（iOS含め安定）。/files/kyomei.pdf をBlob化 -->
-          <button class="btn ghost" id="forceDl">
-            <span class="ico">⬇️</span>
-            <span>Download (if the above opens in the browser)</span>
-          </button>
-
-          <!-- ③ ZIP版（スマホでもほぼ確実に保存扱い） -->
-          <a class="btn ghost" href="/files/kyomei.zip">
-            <span class="ico">🗜️</span>
-            <span>Download ZIP (mirror)</span>
-          </a>
-
-          <!-- 旧：Google Docsエクスポートは“予備ミラー”として残す -->
-          <a class="btn ghost" href="https://docs.google.com/document/d/1wiFAUw2FJrQvRxTsiRHaV3TZn-0_qHsKnRRLS0PAA0I/export?format=pdf" target="_blank" rel="noopener">
-            <span class="ico">🔗</span>
-            <span>Alternate Mirror (Google Docs)</span>
           </a>
 
           <a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
@@ -152,15 +133,10 @@
           </a>
         </div>
 
-        <div class="alt">
-          If tapping still opens a preview, try the second button above, or long-press the first button and choose “Download Linked File”.
-          <noscript>JavaScript is disabled — use the ZIP mirror for a guaranteed download.</noscript>
-        </div>
-
         <div class="howto">
           <strong>How to use</strong>
           <ol>
-            <li>Tap <b>Begin Your Journey</b> to download the PDF (or use ZIP/force download if needed).</li>
+            <li>Tap <b>Begin Your Journey</b> to download the PDF.</li>
             <li>Upload the PDF to your AI (ChatGPT, Claude, Gemini, etc.).</li>
             <li>Name it as you like and start your conversation.</li>
           </ol>
@@ -180,28 +156,5 @@
       </div>
     </footer>
   </main>
-
-  <script>
-    // 強制ダウンロード（同一ドメインにある /files/kyomei.pdf をBlobで保存）
-    document.getElementById('forceDl')?.addEventListener('click', async () => {
-      const url = '/files/kyomei.pdf'; // ← あなたの配置パスに合わせて変更OK
-      try {
-        const res = await fetch(url, { credentials: 'same-origin' });
-        if (!res.ok) throw new Error('Download failed: ' + res.status);
-        const blob = await res.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = 'KyomeiFile.pdf'; // 保存時のファイル名
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(blobUrl);
-      } catch (e) {
-        alert('Download failed. Please try the ZIP mirror or the alternate link.');
-        console.error(e);
-      }
-    });
-  </script>
 </body>
 </html>
