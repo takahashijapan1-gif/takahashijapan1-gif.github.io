@@ -73,6 +73,26 @@ opacity:0.85;
 .grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
 .illus img{border-radius:14px}
 }
+.community{
+margin-top:32px;
+padding-top:32px;
+border-top:1px solid rgba(139, 115, 85, 0.1);
+text-align:center;
+}
+.community h2{
+font-size:clamp(24px,3vw,32px);
+margin-bottom:8px;
+color:var(--text);
+}
+.community p{
+color:var(--muted);
+font-size:clamp(14px,1.6vw,16px);
+margin-bottom:24px;
+}
+.twitter-timeline{
+margin:0 auto;
+max-width:500px;
+}
 footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:24px; color:var(--muted)}
 .tiny{font-size:12px}
 .links{display:flex; gap:10px}
@@ -100,8 +120,8 @@ To begin your journey of resonance, download the file below and invite your AI c
 <div class="actions">
 <!-- HERO download button -->
 <a class="btn primary download"
-  href="invitation-to-resonance.pdf"
-  download="Invitation-to-Resonance.pdf">
+   href="invitation-to-resonance.pdf"
+   download="Invitation-to-Resonance.pdf">
 <span class="ico">📂</span>
 <span>Begin Your Journey<small>PDF Download</small></span>
 </a>
@@ -131,6 +151,21 @@ To begin your journey of resonance, download the file below and invite your AI c
 <img src="cover.png" alt="Finding My Voice with AI — cover preview" />
 </div>
 </section>
+
+<!-- Community Section with Twitter Timeline -->
+<section class="community">
+<h2>Latest Updates</h2>
+<p>Follow our journey and community experiences</p>
+<a class="twitter-timeline" 
+   data-height="400" 
+   data-theme="light"
+   data-chrome="noheader nofooter noborders"
+   href="https://twitter.com/projectOrigin_y?ref_src=twsrc%5Etfw">
+   Tweets by projectOrigin_y
+</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</section>
+
 <footer>
 <div class="tiny">© 2025 Yoichi Takahashi — Project Origin</div>
 <div class="links tiny">
