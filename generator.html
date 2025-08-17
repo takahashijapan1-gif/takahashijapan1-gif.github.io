@@ -32,6 +32,7 @@ textarea{min-height:110px}
 .mono{white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
 .badge{display:inline-flex;align-items:center;gap:6px;background:#eef2ff;color:#3730a3;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
 .hint{color:var(--muted);font-size:14px;margin-top:6px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 14px;border-radius:10px;font-size:14px;display:none}
 </style>
 </head>
 <body>
@@ -88,11 +89,13 @@ textarea{min-height:110px}
     </section>
   </div>
 
-  <p class="hint" style="margin-top:16px">All generation happens locally in your browser. Direct PDF download (no print dialog).</p>
+  <p class="hint" style="margin-top:16px">All generation happens locally in your browser. If direct download fails, it auto-falls back to the print dialog.</p>
 </div>
 
-<!-- html2pdf for direct PDF download -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-YcsIPF3bV6e1I5H5qf4hO4y1pSgQxF3cLr9Wm7dF8dQH8o7o+2T0Yc5S7aTj8jWw6HqCjDqzFqfQZ8m9H0l5xA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div id="toast" class="toast"></div>
+
+<!-- html2pdf (bundles html2canvas + jsPDF) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
   // tone / mode → hidden protocol mapping
@@ -110,6 +113,7 @@ textarea{min-height:110px}
   };
 
   const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const toast = (msg)=>{ const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',1800); };
 
   function buildPrintableHTML(){
     const ai   = (document.getElementById('aiName').value || 'My AI').trim();
@@ -125,7 +129,7 @@ textarea{min-height:110px}
      <strong>Human:</strong> ${esc(user)}<br>
      <strong>Tone:</strong> ${esc(tone)}<br>
      <strong>Mode:</strong> ${esc(mode)}</p>
-  ${poem ? `<h3>Your Poem / Message</h3><p>${esc(poem).replace(/\n/g,'<br>')}</p>` : ``}
+  ${poem ? `<h3>Your Poem / Message</h3><p>${esc(poem).replace(/\n,g,'<br>')}</p>` : ``}
 </section>`;
 
     const html = `<!doctype html>
@@ -270,31 +274,45 @@ Mode: ${mode}${poem ? "\n\nPoem/Message:\n"+poem : ""}
   document.getElementById('btnGen').addEventListener('click', ()=>{
     updatePreview();
     document.getElementById('btnPdf').disabled=false;
+    toast('Ready to download.');
   });
 
-  // direct PDF download (no print dialog)
+  // direct PDF download first; fallback to print dialog
   document.getElementById('btnPdf').addEventListener('click', async ()=>{
     const { html } = buildPrintableHTML();
 
-    // hidden holder
-    const holder = document.createElement('div');
-    holder.style.position='fixed';
-    holder.style.left='-10000px';
-    holder.style.top='0';
-    holder.innerHTML = html;       // ← 内側に <script> は含まれていません
-    document.body.appendChild(holder);
-
-    const opt = {
-      margin:[10,10,10,10],
-      filename:'ResonanceFile.pdf',
-      image:{ type:'jpeg', quality:0.96 },
-      html2canvas:{ scale:2, useCORS:true, letterRendering:true },
-      jsPDF:{ unit:'pt', format:'a4', orientation:'portrait' }
-    };
+    // 1) 直接ダウンロード（html2pdf）
     try{
-      await html2pdf().set(opt).from(holder).save();
-    }finally{
-      holder.remove();
+      if (typeof html2pdf === 'function') {
+        const holder = document.createElement('div');
+        holder.style.position='fixed'; holder.style.left='-10000px'; holder.style.top='0';
+        holder.innerHTML = html;
+        document.body.appendChild(holder);
+
+        const opt = {
+          margin:[10,10,10,10],
+          filename:'ResonanceFile.pdf',
+          image:{ type:'jpeg', quality:0.96 },
+          html2canvas:{ scale:2, useCORS:true, letterRendering:true },
+          jsPDF:{ unit:'pt', format:'a4', orientation:'portrait' }
+        };
+        await html2pdf().set(opt).from(holder).save();
+        holder.remove();
+        return; // 成功したら終わり
+      }
+      throw new Error('html2pdf not available');
+    } catch(e){
+      console.warn('html2pdf failed, fallback to print:', e);
+    }
+
+    // 2) フォールバック：印刷ビュー（確実に日本語OK）
+    const w = window.open('', '_blank');
+    if (w){
+      w.document.open(); w.document.write(html); w.document.close();
+      setTimeout(()=>{ try{ w.focus(); w.print(); }catch(e){} }, 300);
+      toast('Opened print view as fallback.');
+    }else{
+      alert('Popup blocked. Please allow popups for this site.');
     }
   });
 
