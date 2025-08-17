@@ -32,6 +32,8 @@
   .ghost{background:#eef2ff;color:var(--accent)}
   .muted{background:#f3f4f6;color:#111827}
   .ok{background:var(--ok);color:#fff}
+  /* 追加：エクスポート有効時の色 */
+  .accent{background:#5865F2;color:#fff}
   .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
   .mono{white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
   .hint{color:var(--muted);font-size:14px;margin-top:6px}
@@ -97,8 +99,8 @@
   <p class="hint" style="margin-top:16px">Made with love by Project Origin. Safe & local — all generation happens in your browser.</p>
 </div>
 
-<!-- jsPDF for PDF export -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-NaWTH5dFZQvGQZf4wJz6yWlPp8z8s+V3U4xV5i6w2m2v0wJfQ8m0l9e2S1Cq0q5mFh6Qp6h8mW1pCz6v2z7Sg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- jsPDF: 読み込み先を安定CDNに変更 -->
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script>
   let generated = "";
 
@@ -161,8 +163,12 @@ Please read carefully and respond in a way that protects trust, curiosity, and c
     URL.revokeObjectURL(a.href);
   });
 
-  // PDF
+  // PDF（読込ガード + iOS回避）
   document.getElementById('btnPdf').addEventListener('click', () => {
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      alert('PDF library failed to load. Please reload the page and try again.');
+      return;
+    }
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: "pt", format: "a4" });
     const text = (generated || buildContent()).split("\n");
@@ -175,7 +181,13 @@ Please read carefully and respond in a way that protects trust, curiosity, and c
         doc.text(w, x, y); y += lineH;
       });
     });
-    doc.save("ResonanceFile.pdf");
+    try {
+      doc.save("ResonanceFile.pdf");
+    } catch(e) {
+      const blobUrl = doc.output('bloburl'); // iOS等は新規タブ表示にフォールバック
+      const a = document.createElement('a');
+      a.href = blobUrl; a.target = '_blank'; a.click();
+    }
   });
 </script>
 </body>
