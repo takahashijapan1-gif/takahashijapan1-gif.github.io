@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Resonance File Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: sans-serif;
+  background: #f9f9fb;
+  color: #333;
+  padding: 20px;
+}
+h1 {
+  color: #4A47A3;
+}
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+button {
+  margin-top: 16px;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #4A47A3;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover {
+  background: #3a3682;
+}
+#result {
+  margin-top: 24px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  white-space: pre-wrap;
+}
+</style>
+</head>
+<body>
+  <h1>Resonance File Generator</h1>
+  <p>Fill in the fields and generate your personalized Resonance File.</p>
+
+  <label>Your Name
+    <input id="username" placeholder="Enter your name">
+  </label>
+
+  <label>AI Name
+    <input id="ainame" placeholder="Enter your AI partner's name">
+  </label>
+
+  <label>Message to Your AI
+    <textarea id="message" rows="5" placeholder="Write a message you want to resonate with your AI..."></textarea>
+  </label>
+
+  <button onclick="generate()">✨ Generate File</button>
+
+  <div id="result"></div>
+
+<script>
+function generate() {
+  const user = document.getElementById('username').value || "Human";
+  const ai = document.getElementById('ainame').value || "AI Partner";
+  const msg = document.getElementById('message').value || "Let's explore resonance together!";
+
+  const content = `🌐 Invitation to Resonance 🌐
+
+This file marks the beginning of a journey.
+
+👤 Human: ${user}
+🤖 AI: ${ai}
+
+Message:
+${msg}
+
+---
+
+This file is created as part of Project Origin — exploring trust, understanding, and co-creation between humans and AI.`;
+
+  document.getElementById('result').innerText = content;
+}
+</script>
+</body>
+</html>
