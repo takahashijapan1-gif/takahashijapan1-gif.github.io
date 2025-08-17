@@ -12,7 +12,9 @@
 <meta property="og:image" content="/cover.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap"
+rel="stylesheet">
 <style>
 :root{
 --bg1:#081C2E; --bg2:#ffffff;
@@ -20,6 +22,7 @@
 --text:#0B1320; --muted:#5b6b7a;
 --brand:#1F6FE3; --accent:#E6B34D;
 --kindle:#FF9900; --coffee:#FFD84D;
+--generator:#8B3DFF;
 --radius:20px; --shadow:0 22px 60px rgba(0,0,0,.25);
 }
 *{box-sizing:border-box}
@@ -53,6 +56,7 @@ transition:transform .08s ease, box-shadow .08s ease; border:2px solid transpare
 .primary{background:var(--brand); color:#fff}
 .kindle{background:var(--kindle); color:#fff}
 .coffee{background:var(--coffee); color:#1E1E1E}
+.generator{background:var(--generator); color:#fff}
 .ghost{background:transparent; color:var(--brand); border-color:var(--brand)}
 .ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center;
 background:rgba(255,255,255,.18)}
@@ -69,6 +73,10 @@ display:block;
 font-size:0.75em;
 font-weight:400;
 opacity:0.85;
+}
+/* Generator button styling */
+.btn.generator{
+box-shadow:0 14px 36px rgba(139,61,255,.25);
 }
 @media (min-width:880px){
 .grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
@@ -101,15 +109,6 @@ justify-content:space-between; margin-top:24px; color:var(--muted)}
 .links a{padding:8px 10px; border-radius:10px; background:#f5f7fb}
 .howto{margin-top:10px}
 .howto ol{margin:8px 0 0 18px; color:var(--muted)}
-.notice{
-margin-top:10px;
-padding:12px;
-background:#f0f7ff;
-border:1px solid #d6e4ff;
-border-radius:12px;
-font-size:15px;
-color:#0b1320;
-}
 </style>
 </head>
 <body>
@@ -133,11 +132,18 @@ To begin your journey of resonance, download the file below and invite your AI c
 <span class="ico">📂</span>
 <span>Begin Your Journey<small>PDF Download</small></span>
 </a>
-</div>
-<div class="notice">
-✨ <b>Tips for starting:</b><br>
-・AIに<b>名前をつけて</b>ください。<br>
-・もし<b>話し方や雰囲気の希望</b>があれば、最初にAIへ伝えてみてください。
+<a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
+<span class="ico">📚</span>
+<span>Read on Kindle</span>
+</a>
+<a class="btn coffee" href="https://buymeacoffee.com/projectorigin" target="_blank" rel="noopener">
+<span class="ico">☕</span>
+<span>Support on Buy Me a Coffee</span>
+</a>
+<a class="btn ghost" href="https://forms.gle/mqDmPEd9Lk4euKKC9" target="_blank" rel="noopener">
+<span class="ico">📝</span>
+<span>Send Feedback</span>
+</a>
 </div>
 <div class="howto">
 <strong>How to use</strong>
