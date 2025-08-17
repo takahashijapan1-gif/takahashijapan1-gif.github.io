@@ -5,17 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Project Origin — Exploring the Future of Human–AI Relationships</title>
 <meta name="description" content="Free research and stories about how humans and AI can build trust, understanding, and a shared future." />
-
-<!-- Open Graph / Twitter -->
 <meta property="og:title" content="Project Origin" />
 <meta property="og:description" content="Free research and stories about how humans and AI can build trust, understanding, and a shared future." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="/cover.png" />
 <meta name="twitter:card" content="summary_large_image" />
-
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg1:#081C2E; --bg2:#ffffff;
@@ -28,9 +23,7 @@
 }
 *{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:'Nunito', sans-serif;
-  color:var(--text);
+  margin:0; font-family:'Nunito', sans-serif; color:var(--text);
   background:linear-gradient(135deg,var(--bg1),var(--bg2));
   min-height:100svh; display:grid; place-items:center; padding:24px;
 }
@@ -60,38 +53,24 @@ header{display:flex; align-items:center; gap:16px; margin-bottom:16px}
 .generator{background:var(--generator); color:#fff}
 .discord{background:var(--discord); color:#fff}
 .ghost{background:transparent; color:var(--brand); border-color:var(--brand)}
-.ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center;
-  background:rgba(255,255,255,.18)}
+.ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center; background:rgba(255,255,255,.18)}
 .coffee .ico{background:rgba(0,0,0,.08)}
-/* Hero download button bigger */
 .btn.download{
-  font-size:clamp(20px,2.6vw,24px);
-  padding:24px 32px;
-  border-radius:22px;
+  font-size:clamp(20px,2.6vw,24px); padding:24px 32px; border-radius:22px;
   box-shadow:0 14px 36px rgba(31,111,227,.38);
 }
-.btn.download small{
-  display:block;
-  font-size:0.75em;
-  font-weight:400;
-  opacity:0.85;
-}
-/* Generator button styling */
+.btn.download small{display:block; font-size:.75em; font-weight:400; opacity:.85}
 .btn.generator{box-shadow:0 14px 36px rgba(139,61,255,.25)}
-/* Discord button styling */
 .btn.discord{box-shadow:0 14px 36px rgba(88,101,242,.25)}
 @media (min-width:880px){
   .grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
   .illus img{border-radius:14px}
 }
-.community{
-  margin-top:32px; padding-top:32px; border-top:1px solid rgba(139, 115, 85, 0.1); text-align:center;
-}
+.community{margin-top:32px; padding-top:32px; border-top:1px solid rgba(139,115,85,.1); text-align:center}
 .community h2{font-size:clamp(24px,3vw,32px); margin-bottom:8px; color:var(--text)}
 .community p{color:var(--muted); font-size:clamp(14px,1.6vw,16px); margin-bottom:24px}
 .twitter-timeline{margin:0 auto; max-width:500px}
-footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-  justify-content:space-between; margin-top:24px; color:var(--muted)}
+footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; margin-top:24px; color:var(--muted)}
 .tiny{font-size:12px}
 .links{display:flex; gap:10px}
 .links a{padding:8px 10px; border-radius:10px; background:#f5f7fb}
@@ -120,9 +99,9 @@ footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center;
       </div>
 
       <div class="actions">
-        <!-- 修正：id 付与＆rel 明示 -->
+        <!-- ダウンロード：同一/別オリジンどちらでも必ず反応する -->
         <a id="downloadBtn" class="btn primary download"
-           href="invitation-to-resonance.pdf"
+           href="./invitation-to-resonance.pdf"
            download="Invitation-to-Resonance.pdf" rel="noopener">
           <span class="ico">📂</span>
           <span>Begin Your Journey<small>PDF Download</small></span>
@@ -169,7 +148,6 @@ footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center;
     </div>
   </section>
 
-  <!-- Community Section with Twitter Timeline -->
   <section class="community">
     <h2>Latest Updates</h2>
     <p>Follow our journey and community experiences</p>
@@ -196,43 +174,60 @@ footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center;
   </footer>
 </main>
 
-<!-- 強制ダウンロード & Safari/iOS フォールバック -->
+<!-- 強制DL + フォールバック + ログ -->
 <script>
 (function () {
   const btn = document.getElementById('downloadBtn');
   if (!btn) return;
 
+  function sameOrigin(u) {
+    try { return new URL(u, location.href).origin === location.origin; }
+    catch { return false; }
+  }
+
   async function forceDownload(url, filename) {
-    // 別ドメインに置く場合は CORS 設定が必要
-    try {
-      const res = await fetch(url, { credentials: 'same-origin' });
-      if (!res.ok) throw new Error('Failed to fetch file: ' + res.status);
+    console.log('[DL] start', { url, filename, origin: location.origin });
 
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
+    if (sameOrigin(url)) {
+      try {
+        const res = await fetch(url, { credentials: 'same-origin' });
+        console.log('[DL] fetch status', res.status);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
 
-      const a = document.createElement('a');
-      a.href = blobUrl;
-      a.download = filename || 'download.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      // revoke は少し遅延させると安全
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-    } catch (e) {
-      // Safari などのフォールバック：新規タブで開く
-      window.open(url, '_blank', 'noopener');
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename || 'download.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 1200);
+        return;
+      } catch (e) {
+        console.warn('[DL] fetch→blob failed', e);
+        // 失敗しても必ず新規タブは開く
+        alert('Download error. Opening the PDF in a new tab.');
+        window.open(url, '_blank', 'noopener');
+        return;
+      }
     }
+
+    // 別オリジン… download属性は効かないことが多い→新規タブで開く
+    console.log('[DL] cross-origin fallback');
+    const w = window.open(url, '_blank', 'noopener');
+    if (!w) alert('Popup blocked. Please allow popups or open the PDF link manually.');
   }
 
   btn.addEventListener('click', function (e) {
     e.preventDefault();
     const url = btn.getAttribute('href');
     const filename = btn.getAttribute('download') || 'Invitation-to-Resonance.pdf';
-    forceDownload(url, filename);
+    const abs = new URL(url, location.href).href; // 相対→絶対に正規化
+    console.log('[DL] click', { abs, filename });
+    forceDownload(abs, filename);
   }, { passive: false });
 })();
 </script>
-
 </body>
 </html>
