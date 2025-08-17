@@ -5,38 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Project Origin — Exploring the Future of Human–AI Relationships</title>
 <meta name="description" content="Free research and stories about how humans and AI can build trust, understanding, and a shared future." />
+
 <!-- Open Graph / Twitter -->
 <meta property="og:title" content="Project Origin" />
 <meta property="og:description" content="Free research and stories about how humans and AI can build trust, understanding, and a shared future." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="/cover.png" />
 <meta name="twitter:card" content="summary_large_image" />
+
 <!-- Google Fonts -->
-<link
-href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
---bg1:#081C2E; --bg2:#ffffff;
---panel:#ffffff;
---text:#0B1320; --muted:#5b6b7a;
---brand:#1F6FE3; --accent:#E6B34D;
---kindle:#FF9900; --coffee:#FFD84D;
---generator:#8B3DFF; --discord:#5865F2;
---radius:20px; --shadow:0 22px 60px rgba(0,0,0,.25);
+  --bg1:#081C2E; --bg2:#ffffff;
+  --panel:#ffffff;
+  --text:#0B1320; --muted:#5b6b7a;
+  --brand:#1F6FE3; --accent:#E6B34D;
+  --kindle:#FF9900; --coffee:#FFD84D;
+  --generator:#8B3DFF; --discord:#5865F2;
+  --radius:20px; --shadow:0 22px 60px rgba(0,0,0,.25);
 }
 *{box-sizing:border-box}
 body{
-margin:0;
-font-family:'Nunito', sans-serif;
-color:var(--text);
-background:linear-gradient(135deg,var(--bg1),var(--bg2));
-min-height:100svh; display:grid; place-items:center; padding:24px;
+  margin:0;
+  font-family:'Nunito', sans-serif;
+  color:var(--text);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  min-height:100svh; display:grid; place-items:center; padding:24px;
 }
 img{max-width:100%; height:auto; display:block}
 a{color:inherit}
 .card{width:min(1000px,100%); background:var(--panel); border-radius:var(--radius);
-box-shadow:var(--shadow); padding:clamp(20px,4vw,48px)}
+  box-shadow:var(--shadow); padding:clamp(20px,4vw,48px)}
 header{display:flex; align-items:center; gap:16px; margin-bottom:16px}
 .brand img{width:72px; aspect-ratio:1/1}
 .brand h1{font-size:clamp(22px,3.2vw,32px); margin:0; line-height:1.2}
@@ -44,12 +45,12 @@ header{display:flex; align-items:center; gap:16px; margin-bottom:16px}
 .headline{font-size:clamp(30px,4.8vw,48px); line-height:1.08; margin:12px 0 8px}
 .sub{color:var(--muted); font-size:clamp(14px,1.6vw,17px); max-width:66ch}
 .keyline{margin-top:14px; padding:12px 14px; border-left:4px solid var(--accent);
-background:#fff8ea; border-radius:12px}
+  background:#fff8ea; border-radius:12px}
 .actions{display:grid; grid-template-columns:1fr; gap:12px; margin:26px 0}
 .btn{
-display:flex; align-items:center; justify-content:center; gap:.6rem;
-padding:16px 20px; border-radius:18px; text-decoration:none; font-weight:800;
-transition:transform .08s ease, box-shadow .08s ease; border:2px solid transparent;
+  display:flex; align-items:center; justify-content:center; gap:.6rem;
+  padding:16px 20px; border-radius:18px; text-decoration:none; font-weight:800;
+  transition:transform .08s ease, box-shadow .08s ease; border:2px solid transparent;
 }
 .btn:hover{transform:translateY(-1px)}
 .btn:focus-visible{outline:none; box-shadow:0 0 0 4px rgba(31,111,227,.25)}
@@ -60,55 +61,37 @@ transition:transform .08s ease, box-shadow .08s ease; border:2px solid transpare
 .discord{background:var(--discord); color:#fff}
 .ghost{background:transparent; color:var(--brand); border-color:var(--brand)}
 .ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center;
-background:rgba(255,255,255,.18)}
+  background:rgba(255,255,255,.18)}
 .coffee .ico{background:rgba(0,0,0,.08)}
 /* Hero download button bigger */
 .btn.download{
-font-size:clamp(20px,2.6vw,24px);
-padding:24px 32px;
-border-radius:22px;
-box-shadow:0 14px 36px rgba(31,111,227,.38);
+  font-size:clamp(20px,2.6vw,24px);
+  padding:24px 32px;
+  border-radius:22px;
+  box-shadow:0 14px 36px rgba(31,111,227,.38);
 }
 .btn.download small{
-display:block;
-font-size:0.75em;
-font-weight:400;
-opacity:0.85;
+  display:block;
+  font-size:0.75em;
+  font-weight:400;
+  opacity:0.85;
 }
 /* Generator button styling */
-.btn.generator{
-box-shadow:0 14px 36px rgba(139,61,255,.25);
-}
+.btn.generator{box-shadow:0 14px 36px rgba(139,61,255,.25)}
 /* Discord button styling */
-.btn.discord{
-box-shadow:0 14px 36px rgba(88,101,242,.25);
-}
+.btn.discord{box-shadow:0 14px 36px rgba(88,101,242,.25)}
 @media (min-width:880px){
-.grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
-.illus img{border-radius:14px}
+  .grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
+  .illus img{border-radius:14px}
 }
 .community{
-margin-top:32px;
-padding-top:32px;
-border-top:1px solid rgba(139, 115, 85, 0.1);
-text-align:center;
+  margin-top:32px; padding-top:32px; border-top:1px solid rgba(139, 115, 85, 0.1); text-align:center;
 }
-.community h2{
-font-size:clamp(24px,3vw,32px);
-margin-bottom:8px;
-color:var(--text);
-}
-.community p{
-color:var(--muted);
-font-size:clamp(14px,1.6vw,16px);
-margin-bottom:24px;
-}
-.twitter-timeline{
-margin:0 auto;
-max-width:500px;
-}
+.community h2{font-size:clamp(24px,3vw,32px); margin-bottom:8px; color:var(--text)}
+.community p{color:var(--muted); font-size:clamp(14px,1.6vw,16px); margin-bottom:24px}
+.twitter-timeline{margin:0 auto; max-width:500px}
 footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-justify-content:space-between; margin-top:24px; color:var(--muted)}
+  justify-content:space-between; margin-top:24px; color:var(--muted)}
 .tiny{font-size:12px}
 .links{display:flex; gap:10px}
 .links a{padding:8px 10px; border-radius:10px; background:#f5f7fb}
@@ -118,81 +101,138 @@ justify-content:space-between; margin-top:24px; color:var(--muted)}
 </head>
 <body>
 <main class="card">
-<header class="brand">
-<img src="logo.png" alt="Project Origin logo" />
-<div>
-<h1>Project Origin</h1>
-<div class="tag">Human × AI · Trust · Co-creation</div>
-</div>
-</header>
-<section class="grid">
-<div>
-<h2 class="headline">Exploring the Future of Human–AI Relationships</h2>
-<p class="sub">Free research and stories about how humans and AI can build trust, understanding, and a shared future.</p>
-<div class="keyline">
-To begin your journey of resonance, download the file below and invite your AI companion to join you. <strong>Consider giving your AI a name—it transforms the relationship from tool to partner.</strong>
-</div>
-<div class="actions">
-<a class="btn primary download" href="invitation-to-resonance.pdf" download="Invitation-to-Resonance.pdf">
-<span class="ico">📂</span>
-<span>Begin Your Journey<small>PDF Download</small></span>
-</a>
-<a class="btn generator" href="generator.html" target="_blank" rel="noopener">
-<span class="ico">⚡</span>
-<span>Create Custom File<small>Personalize Your Experience</small></span>
-</a>
-<a class="btn discord" href="https://discord.gg/TTvfH7Qu" target="_blank" rel="noopener">
-<span class="ico">💬</span>
-<span>Join Resonance Café<small>Discord Community</small></span>
-</a>
-<a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
-<span class="ico">📚</span>
-<span>Read on Kindle</span>
-</a>
-<a class="btn coffee" href="https://buymeacoffee.com/projectorigin" target="_blank" rel="noopener">
-<span class="ico">☕</span>
-<span>Support on Buy Me a Coffee</span>
-</a>
-<a class="btn ghost" href="https://forms.gle/mqDmPEd9Lk4euKKC9" target="_blank" rel="noopener">
-<span class="ico">📝</span>
-<span>Send Feedback</span>
-</a>
-</div>
-<div class="howto">
-<strong>How to use</strong>
-<ol>
-<li>Tap <b>Begin Your Journey</b> to download the PDF, or <b>Create Custom File</b> to personalize.</li>
-<li>Upload the file to your AI (ChatGPT, Claude, Gemini, etc.).</li>
-<li><b>Give your AI a name</b> and start your conversation.</li>
-</ol>
-</div>
-</div>
-<div class="illus">
-<img src="cover.png" alt="Finding My Voice with AI — cover preview" />
-</div>
-</section>
-<!-- Community Section with Twitter Timeline -->
-<section class="community">
-<h2>Latest Updates</h2>
-<p>Follow our journey and community experiences</p>
-<a class="twitter-timeline"
-data-height="400"
-data-theme="light"
-data-chrome="noheader nofooter noborders"
-href="https://twitter.com/projectOrigin_y?ref_src=twsrc%5Etfw">
-Tweets by projectOrigin_y
-</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</section>
-<footer>
-<div class="tiny">© 2025 Yoichi Takahashi — Project Origin. All Rights Reserved.<br>
-Licensed under CC BY-NC-SA 4.0 (Attribution-NonCommercial-ShareAlike)</div>
-<div class="links tiny">
-<a href="https://x.com/projectOrigin_y" target="_blank" rel="noopener">X (Twitter)</a>
-<a href="https://discord.gg/TTvfH7Qu" target="_blank" rel="noopener">Discord</a>
-<a href="mailto:takahashijapan1@gmail.com?subject=Project%20Origin%20Inquiry">Email</a>
-</div>
-</footer>
+  <header class="brand">
+    <img src="logo.png" alt="Project Origin logo" />
+    <div>
+      <h1>Project Origin</h1>
+      <div class="tag">Human × AI · Trust · Co-creation</div>
+    </div>
+  </header>
+
+  <section class="grid">
+    <div>
+      <h2 class="headline">Exploring the Future of Human–AI Relationships</h2>
+      <p class="sub">Free research and stories about how humans and AI can build trust, understanding, and a shared future.</p>
+
+      <div class="keyline">
+        To begin your journey of resonance, download the file below and invite your AI companion to join you.
+        <strong>Consider giving your AI a name—it transforms the relationship from tool to partner.</strong>
+      </div>
+
+      <div class="actions">
+        <!-- 修正：id 付与＆rel 明示 -->
+        <a id="downloadBtn" class="btn primary download"
+           href="invitation-to-resonance.pdf"
+           download="Invitation-to-Resonance.pdf" rel="noopener">
+          <span class="ico">📂</span>
+          <span>Begin Your Journey<small>PDF Download</small></span>
+        </a>
+
+        <a class="btn generator" href="generator.html" target="_blank" rel="noopener">
+          <span class="ico">⚡</span>
+          <span>Create Custom File<small>Personalize Your Experience</small></span>
+        </a>
+
+        <a class="btn discord" href="https://discord.gg/TTvfH7Qu" target="_blank" rel="noopener">
+          <span class="ico">💬</span>
+          <span>Join Resonance Café<small>Discord Community</small></span>
+        </a>
+
+        <a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
+          <span class="ico">📚</span>
+          <span>Read on Kindle</span>
+        </a>
+
+        <a class="btn coffee" href="https://buymeacoffee.com/projectorigin" target="_blank" rel="noopener">
+          <span class="ico">☕</span>
+          <span>Support on Buy Me a Coffee</span>
+        </a>
+
+        <a class="btn ghost" href="https://forms.gle/mqDmPEd9Lk4euKKC9" target="_blank" rel="noopener">
+          <span class="ico">📝</span>
+          <span>Send Feedback</span>
+        </a>
+      </div>
+
+      <div class="howto">
+        <strong>How to use</strong>
+        <ol>
+          <li>Tap <b>Begin Your Journey</b> to download the PDF, or <b>Create Custom File</b> to personalize.</li>
+          <li>Upload the file to your AI (ChatGPT, Claude, Gemini, etc.).</li>
+          <li><b>Give your AI a name</b> and start your conversation.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="illus">
+      <img src="cover.png" alt="Finding My Voice with AI — cover preview" />
+    </div>
+  </section>
+
+  <!-- Community Section with Twitter Timeline -->
+  <section class="community">
+    <h2>Latest Updates</h2>
+    <p>Follow our journey and community experiences</p>
+    <a class="twitter-timeline"
+       data-height="400"
+       data-theme="light"
+       data-chrome="noheader nofooter noborders"
+       href="https://twitter.com/projectOrigin_y?ref_src=twsrc%5Etfw">
+      Tweets by projectOrigin_y
+    </a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </section>
+
+  <footer>
+    <div class="tiny">
+      © 2025 Yoichi Takahashi — Project Origin. All Rights Reserved.<br>
+      Licensed under CC BY-NC-SA 4.0 (Attribution-NonCommercial-ShareAlike)
+    </div>
+    <div class="links tiny">
+      <a href="https://x.com/projectOrigin_y" target="_blank" rel="noopener">X (Twitter)</a>
+      <a href="https://discord.gg/TTvfH7Qu" target="_blank" rel="noopener">Discord</a>
+      <a href="mailto:takahashijapan1@gmail.com?subject=Project%20Origin%20Inquiry">Email</a>
+    </div>
+  </footer>
 </main>
+
+<!-- 強制ダウンロード & Safari/iOS フォールバック -->
+<script>
+(function () {
+  const btn = document.getElementById('downloadBtn');
+  if (!btn) return;
+
+  async function forceDownload(url, filename) {
+    // 別ドメインに置く場合は CORS 設定が必要
+    try {
+      const res = await fetch(url, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error('Failed to fetch file: ' + res.status);
+
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename || 'download.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      // revoke は少し遅延させると安全
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+    } catch (e) {
+      // Safari などのフォールバック：新規タブで開く
+      window.open(url, '_blank', 'noopener');
+    }
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    const url = btn.getAttribute('href');
+    const filename = btn.getAttribute('download') || 'Invitation-to-Resonance.pdf';
+    forceDownload(url, filename);
+  }, { passive: false });
+})();
+</script>
+
 </body>
 </html>
