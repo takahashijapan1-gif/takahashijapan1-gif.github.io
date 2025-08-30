@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project Origin — Exploring the Future of Human-AI Relationships</title>
+<meta name="description" content="Free research and stories to build a future where humans and AI trust, understand, and share together." />
+<!-- Open Graph / Twitter -->
+<meta property="og:title" content="Project Origin" />
+<meta property="og:description" content="Free research and stories to build a future where humans and AI trust, understand, and share together." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="/cover.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&family=Nunito:wght@400;600;800&display=swap"
+rel="stylesheet">
+<style>
+:root{
+--bg1:#081C2E; --bg2:#ffffff;
+--panel:#ffffff;
+--text:#0B1320; --muted:#5b6b7a;
+--brand:#1F6FE3; --accent:#E6B34D;
+--kindle:#FF9900; --coffee:#FFD84D;
+--generator:#8B3DFF;
+--radius:20px; --shadow:0 22px 60px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:'Noto Sans', 'Nunito', sans-serif;
+color:var(--text);
+background:linear-gradient(135deg,var(--bg1),var(--bg2));
+min-height:100svh; display:grid; place-items:center; padding:24px;
+}
+img{max-width:100%; height:auto; display:block}
+a{color:inherit}
+.card{width:min(1000px,100%); background:var(--panel); border-radius:var(--radius);
+box-shadow:var(--shadow); padding:clamp(20px,4vw,48px)}
+header{display:flex; align-items:center; gap:16px; margin-bottom:16px; justify-content:space-between}
+.lang-switch{margin-left:auto}
+.lang-btn{
+padding:8px 16px; background:var(--brand); color:white; 
+border-radius:12px; text-decoration:none; font-size:14px; font-weight:600;
+transition:transform .08s ease;
+}
+.lang-btn:hover{transform:translateY(-1px)}
+.brand img{width:72px; aspect-ratio:1/1}
+.brand h1{font-size:clamp(22px,3.2vw,32px); margin:0; line-height:1.2}
+.tag{color:var(--muted); font-weight:500}
+.headline{font-size:clamp(30px,4.8vw,48px); line-height:1.2; margin:12px 0 8px}
+.sub{color:var(--muted); font-size:clamp(14px,1.6vw,17px); max-width:66ch; line-height:1.6}
+.keyline{margin-top:14px; padding:12px 14px; border-left:4px solid var(--accent);
+background:#fff8ea; border-radius:12px; line-height:1.6}
+.actions{display:grid; grid-template-columns:1fr; gap:12px; margin:26px 0}
+.btn{
+display:flex; align-items:center; justify-content:center; gap:.6rem;
+padding:16px 20px; border-radius:18px; text-decoration:none; font-weight:800;
+transition:transform .08s ease, box-shadow .08s ease; border:2px solid transparent;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:none; box-shadow:0 0 0 4px rgba(31,111,227,.25)}
+.primary{background:var(--brand); color:#fff}
+.kindle{background:var(--kindle); color:#fff}
+.coffee{background:var(--coffee); color:#1E1E1E}
+.generator{background:var(--generator); color:#fff}
+.ghost{background:transparent; color:var(--brand); border-color:var(--brand)}
+.ico{width:24px; height:24px; border-radius:999px; display:grid; place-items:center;
+background:rgba(255,255,255,.18)}
+.coffee .ico{background:rgba(0,0,0,.08)}
+/* Hero download button bigger */
+.btn.download{
+font-size:clamp(18px,2.4vw,22px);
+padding:24px 32px;
+border-radius:22px;
+box-shadow:0 14px 36px rgba(31,111,227,.38);
+}
+.btn.download small{
+display:block;
+font-size:0.75em;
+font-weight:400;
+opacity:0.85;
+}
+/* Generator button styling */
+.btn.generator{
+box-shadow:0 14px 36px rgba(139,61,255,.25);
+}
+@media (min-width:880px){
+.grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center}
+.illus img{border-radius:14px}
+}
+.community{
+margin-top:32px;
+padding-top:32px;
+border-top:1px solid rgba(139, 115, 85, 0.1);
+text-align:center;
+}
+.community h2{
+font-size:clamp(24px,3vw,32px);
+margin-bottom:8px;
+color:var(--text);
+}
+.community p{
+color:var(--muted);
+font-size:clamp(14px,1.6vw,16px);
+margin-bottom:24px;
+}
+.twitter-timeline{
+margin:0 auto;
+max-width:500px;
+}
+footer{display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+justify-content:space-between; margin-top:24px; color:var(--muted)}
+.tiny{font-size:12px; line-height:1.5}
+.links{display:flex; gap:10px}
+.links a{padding:8px 10px; border-radius:10px; background:#f5f7fb}
+.howto{margin-top:10px}
+.howto ol{margin:8px 0 0 18px; color:var(--muted); line-height:1.6}
+
+/* Modal styles */
+.modal{
+display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%;
+background:rgba(0,0,0,0.5); backdrop-filter:blur(4px);
+}
+.modal-content{
+background:var(--panel); margin:10% auto; padding:2rem; border-radius:var(--radius);
+width:min(500px,90%); position:relative; box-shadow:var(--shadow);
+animation:modalSlide 0.3s ease;
+}
+@keyframes modalSlide{
+from{transform:translateY(-50px); opacity:0}
+to{transform:translateY(0); opacity:1}
+}
+.close{
+position:absolute; top:1rem; right:1.5rem; font-size:2rem; font-weight:bold;
+color:var(--muted); cursor:pointer; transition:color 0.2s;
+}
+.close:hover{color:var(--text)}
+.bank-info{
+text-align:center; padding:1rem 0;
+}
+.bank-info h3{
+color:var(--brand); margin-bottom:1.5rem; font-size:1.5rem;
+}
+.bank-detail{
+background:#f8fafc; padding:1rem; border-radius:12px; margin:0.5rem 0;
+display:flex; justify-content:space-between; align-items:center;
+border:1px solid #e2e8f0;
+}
+.bank-detail strong{
+color:var(--text); font-weight:600;
+}
+.copy-btn{
+background:var(--brand); color:white; border:none; padding:0.5rem 1rem;
+border-radius:8px; cursor:pointer; font-size:0.8rem; transition:background 0.2s;
+}
+.copy-btn:hover{background:#1557b8}
+.note{
+color:var(--muted); font-size:0.9rem; margin-top:1rem; text-align:center;
+line-height:1.5;
+}
+</style>
+</head>
+<body>
+<main class="card">
+<header class="brand">
+<img src="logo.png" alt="Project Origin Logo" />
+<div>
+<h1>Project Origin</h1>
+<div class="tag">Human × AI · Trust · Co-creation</div>
+</div>
+<div class="lang-switch">
+<a href="index-ja.html" class="lang-btn">日本語</a>
+</div>
+</header>
+<section class="grid">
+<div>
+<h2 class="headline">Exploring the Future of Human-AI Relationships</h2>
+<p class="sub">Free research and stories to build a future where humans and AI trust, understand, and share together.</p>
+<div class="keyline">
+To begin your journey of resonance, download the file below and invite your AI partner. <strong>Consider giving your AI a name—it transforms the relationship from tool to partner.</strong>
+</div>
+<div class="actions">
+<a class="btn primary download" href="invitation-to-resonance.pdf" download="Invitation-to-Resonance.pdf">
+<span class="ico">📂</span>
+<span>Start Your Journey<small>PDF Download</small></span>
+</a>
+<a class="btn kindle" href="https://www.amazon.com/dp/B0FLF299C7" target="_blank" rel="noopener">
+<span class="ico">📚</span>
+<span>Read on Kindle</span>
+</a>
+<a class="btn coffee" href="#" onclick="openModal()">
+<span class="ico">☕</span>
+<span>Support with Coffee</span>
+</a>
+<a class="btn ghost" href="https://forms.gle/mqDmPEd9Lk4euKKC9" target="_blank" rel="noopener">
+<span class="ico">📝</span>
+<span>Send Feedback</span>
+</a>
+</div>
+<div class="howto">
+<strong>How to use</strong>
+<ol>
+<li>Tap <b>Start Your Journey</b> to download the PDF.</li>
+<li>Upload the file to your AI (ChatGPT, Claude, Gemini, etc.).</li>
+<li><b>Give your AI a name</b> and start the conversation.</li>
+</ol>
+</div>
+</div>
+<div class="illus">
+<img src="cover.png" alt="Finding My Voice with AI — Cover Preview" />
+</div>
+</section>
+<!-- Community Section with Twitter Timeline -->
+<section class="community">
+<h2>Latest Updates</h2>
+<p>Follow our journey and community experiences</p>
+<a class="twitter-timeline"
+data-height="400"
+data-theme="light"
+data-chrome="noheader nofooter noborders"
+href="https://twitter.com/projectOrigin_y?ref_src=twsrc%5Etfw">
+Tweets by projectOrigin_y
+</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</section>
+<footer>
+<div class="tiny">© 2025 Yoichi Takahashi — Project Origin. All Rights Reserved.<br>
+Licensed under CC BY-NC-SA 4.0 (Attribution-NonCommercial-ShareAlike)</div>
+<div class="links tiny">
+<a href="https://x.com/projectOrigin_y" target="_blank" rel="noopener">X (Twitter)</a>
+<a href="mailto:takahashijapan1@gmail.com?subject=Project%20Origin%20Inquiry">Email</a>
+</div>
+</footer>
+
+<!-- Bank Transfer Modal -->
+<div id="bankModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">&times;</span>
+<div class="bank-info">
+<h3>☕ Support via Bank Transfer</h3>
+<div class="bank-detail">
+<div>
+<strong>Bank Name:</strong><br>
+Hokuyo Bank
+</div>
+<button class="copy-btn" onclick="copyText('Hokuyo Bank')">Copy</button>
+</div>
+<div class="bank-detail">
+<div>
+<strong>Branch:</strong><br>
+Kagura Branch
+</div>
+<button class="copy-btn" onclick="copyText('Kagura Branch')">Copy</button>
+</div>
+<div class="bank-detail">
+<div>
+<strong>Account Number:</strong><br>
+0092923
+</div>
+<button class="copy-btn" onclick="copyText('0092923')">Copy</button>
+</div>
+<div class="bank-detail">
+<div>
+<strong>Account Name:</strong><br>
+Takahashi Yoichi
+</div>
+<button class="copy-btn" onclick="copyText('Takahashi Yoichi')">Copy</button>
+</div>
+<p class="note">
+Thank you so much for your support.<br>
+Your contribution will be used carefully to continue Project Origin's activities.
+</p>
+</div>
+</div>
+</div>
+
+<script>
+function openModal() {
+document.getElementById('bankModal').style.display = 'block';
+}
+
+function closeModal() {
+document.getElementById('bankModal').style.display = 'none';
+}
+
+function copyText(text) {
+navigator.clipboard.writeText(text).then(function() {
+// Simple success indication
+event.target.textContent = 'Copied!';
+setTimeout(() => {
+event.target.textContent = 'Copy';
+}, 1500);
+}).catch(function() {
+// Fallback for older browsers
+alert('Could not copy automatically. Please copy manually: ' + text);
+});
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+const modal = document.getElementById('bankModal');
+if (event.target === modal) {
+closeModal();
+}
+}
+</script>
+
+</main>
+</body>
+</html>
